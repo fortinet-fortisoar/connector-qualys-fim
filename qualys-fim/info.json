@@ -1,0 +1,885 @@
+{
+  "name": "qualys-fim",
+  "label": "Qualys File Integrity Monitoring(FIM)",
+  "description": "Qualys File Integrity Monitoring (FIM) is a highly scalable cloud app that enables a simple way to monitor critical files, directories, and registry paths for changes in real time, and helps adhere to compliance mandates such as PCI-DSS, FedRAMP, HIPAA, GDPR and others.",
+  "publisher": "Community",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "version": "1.0.0",
+  "category": "IT Services",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "server_url",
+        "value": "https://gateway.qg2.apps.qualys.com"
+      },
+      {
+        "title": "User Name",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "username"
+      },
+      {
+        "title": "Password",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "password"
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_events",
+      "title": "Get Events",
+      "description": "Fetch a list of all FIM events from the user account.",
+      "category": "investigation",
+      "annotation": "get_events",
+      "output_schema": [
+        {
+          "sortValues": [],
+          "data": {
+            "dateTime": "",
+            "fullPath": "",
+            "severity": "",
+            "profiles": [
+              {
+                "name": "",
+                "rules": [
+                  {
+                    "severity": "",
+                    "description": "",
+                    "id": "",
+                    "type": ""
+                  }
+                ],
+                "id": "",
+                "type": "",
+                "category": ""
+              }
+            ],
+            "type": "",
+            "changedAttributes": [
+            ],
+            "platform": "",
+            "oldContent": "",
+            "actor": {
+              "process": "",
+              "processID": "",
+              "imagePath": "",
+              "userName": "",
+              "userID": ""
+            },
+            "newContent": "",
+            "customerId": "",
+            "name": "",
+            "action": "",
+            "id": "",
+            "asset": {
+              "agentId": "",
+              "interfaces": [
+                {
+                  "hostname": "",
+                  "macAddress": "",
+                  "address": "",
+                  "interfaceName": ""
+                }
+              ],
+              "lastCheckedIn": "",
+              "created": "",
+              "hostId": "",
+              "operatingSystem": "",
+              "tags": [
+              ],
+              "assetType": "",
+              "system": {
+                "lastBoot": ""
+              },
+              "ec2": "",
+              "lastLoggedOnUser": "",
+              "netbiosName": "",
+              "name": "",
+              "agentVersion": "",
+              "updated": ""
+            },
+            "class": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "title": "Filter",
+          "name": "filter",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "placeholder": "profiles.name: Windows Profile - PCI(NJJ)",
+          "tooltip": "Filter the events list by providing a query using Qualys syntax. For example - dateTime:['2019-02-25T18:30:00.000Z'..'2019-02-26T18:29:59.999Z'] AND action: 'Create'.",
+          "description": "Filter the events list by providing a query using Qualys syntax. For example - dateTime:['2019-02-25T18:30:00.000Z'..'2019-02-26T18:29:59.999Z'] AND action: 'Create'."
+        },
+        {
+          "title": "Sort",
+          "name": "sort",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "placeholder": "[{\"action\":\"asc\"}]",
+          "tooltip": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}].",
+          "description": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}]."
+        },
+        {
+          "title": "Incident Context",
+          "name": "incidentContext",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "checkbox",
+          "tooltip": " Search within incidents. Default is false.",
+          "description": " Search within incidents. Default is false.",
+          "value": false
+        },
+        {
+          "title": "Incident Ids",
+          "name": "incidentIds",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Comma separated list of incident IDs to be included while searching for events in incidents.",
+          "description": "Comma separated list of incident IDs to be included while searching for events in incidents."
+        },
+        {
+          "title": "Page Number",
+          "name": "pageNumber",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The page to be returned. Starts from zero.",
+          "description": "The page to be returned. Starts from zero."
+        },
+        {
+          "title": "Page Size",
+          "name": "pageSize",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The number of records per page to be included in the response. Default is 10.",
+          "description": "The number of records per page to be included in the response. Default is 10."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_event_details",
+      "title": "Get Event Details",
+      "description": "Fetch details for an event.",
+      "category": "investigation",
+      "annotation": "get_event_details",
+      "output_schema": {
+        "dateTime": "",
+        "fullPath": "",
+        "severity": "",
+        "profiles": [
+          {
+            "name": "",
+            "rules": [
+              {
+                "severity": 4,
+                "description": "",
+                "id": "",
+                "type": ""
+              }
+            ],
+            "id": "",
+            "type": "",
+            "category": ""
+          }
+        ],
+        "type": "",
+        "changedAttributes": [
+        ],
+        "platform": "",
+        "oldContent": "",
+        "actor": {
+          "process": "",
+          "processID": "",
+          "imagePath": "",
+          "userName": "",
+          "userID": ""
+        },
+        "newContent": "",
+        "customerId": "",
+        "name": "",
+        "action": "",
+        "attributes": {
+          "old": "",
+          "new": [
+          ]
+        },
+        "id": "",
+        "asset": {
+          "agentId": "",
+          "interfaces": [
+            {
+              "hostname": "",
+              "macAddress": "",
+              "address": "",
+              "interfaceName": ""
+            }
+          ],
+          "lastCheckedIn": "",
+          "created": "",
+          "hostId": "",
+          "operatingSystem": "",
+          "tags": [
+          ],
+          "assetType": "",
+          "system": {
+            "lastBoot": ""
+          },
+          "ec2": "",
+          "lastLoggedOnUser": "",
+          "netbiosName": "",
+          "name": "",
+          "agentVersion": "",
+          "updated": ""
+        },
+        "class": ""
+      },
+      "parameters": [
+        {
+          "title": "Event ID",
+          "name": "eventId",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Specify the eventid who's information you want to fetch.",
+          "description": "Specify the eventid who's information you want to fetch."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "create_manual_incident ",
+      "title": "Create Manual Incident ",
+      "description": "Create manual incidents of type \"DEFAULT\".",
+      "category": "investigation",
+      "annotation": "create_manual_incident",
+      "output_schema": {
+        "comment": "",
+        "approvalType": "",
+        "type": "",
+        "id": "",
+        "userInfo": {
+          "user": {
+            "id": "",
+            "name": ""
+          },
+          "date": ""
+        },
+        "customerId": "",
+        "name": "",
+        "filters": [
+        ],
+        "reviewers": [
+        ]
+      },
+      "parameters": [
+        {
+          "title": "Filter",
+          "name": "filter",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Filter the events list by providing a query using Qualys syntax. For example - \"filters\": [ \"dateTime: ['2020-05-17T18:30:00.000Z'..'2020-05-18T18:29:59.999Z'] and(action:`Attributes`)\"].",
+          "description": "Filter the events list by providing a query using Qualys syntax. For example - \"filters\": [ \"dateTime: ['2020-05-17T18:30:00.000Z'..'2020-05-18T18:29:59.999Z'] and(action:`Attributes`)\"]."
+        },
+        {
+          "title": "Incident Name",
+          "name": "name",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The name of the incident. Accepted length: Between 1 to 128 characters.",
+          "description": "The name of the incident. Accepted length: Between 1 to 128 characters."
+        },
+        {
+          "title": "Comment",
+          "name": "comment",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Specify the comments for approval of the Incidents.",
+          "description": "Specify the comments for approval of the Incidents."
+        },
+        {
+          "title": "Reviewers Name",
+          "name": "reviewers",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": " Reviewers who will approve the incident.",
+          "description": "Reviewers who will approve the incident."
+        },
+        {
+          "title": "User Information",
+          "name": "userInfo",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "checkbox",
+          "tooltip": "Information about the user",
+          "description": "Information about the user",
+          "value": false,
+          "onchange": {
+            "true": [
+              {
+                "title": "User Name",
+                "name": "userName",
+                "visible": true,
+                "required": true,
+                "editable": true,
+                "type": "text",
+                "tooltip": "Specify the user name.",
+                "description": "Specify the user name."
+              },
+              {
+                "title": "User ID",
+                "name": "userId",
+                "visible": true,
+                "required": true,
+                "editable": true,
+                "type": "text",
+                "tooltip": "Specify the user ID.",
+                "description": "Specify the user ID."
+              }
+            ]
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "approve_incident ",
+      "title": "Approve Incident ",
+      "description": "Approve an Incident.",
+      "category": "investigation",
+      "annotation": "approve_incident",
+      "output_schema": {
+        "customerId": "",
+        "type": "",
+        "id": "",
+        "filterFromDate": "",
+        "filterToDate": "",
+        "name": "",
+        "filters": [
+        ],
+        "status": "",
+        "reviewers": [
+        ],
+        "comment": "",
+        "assignDate": "",
+        "approvalDate": "",
+        "approvalStatus": "",
+        "dispositionCategory": "",
+        "changeType": "",
+        "approvalType": "",
+        "createdById": "",
+        "createdByName": "",
+        "createdDate": "",
+        "lastUpdatedById": "",
+        "lastUpdatedByName": "",
+        "lastUpdatedDate": "",
+        "filterUpdatedDate": "",
+        "deleted": "",
+        "marked": "",
+        "moved": "",
+        "markupStatus": "",
+        "ruleId": "",
+        "ruleName": ""
+      },
+      "parameters": [
+        {
+          "title": "Incident ID",
+          "name": "incidentId",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Specify the ID of the incident you want to approve.",
+          "description": "Specify the ID of the incident you want to approve."
+        },
+        {
+          "title": "Approval Status",
+          "name": "approvalStatus",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "select",
+          "options": [
+            "APPROVED",
+            "POLICY_VIOLATION",
+            "UNAPPROVED",
+            "NA"
+          ],
+          "tooltip": "Specify the approval status of the incident created by the rule.",
+          "description": "Specify the approval status of the incident created by the rule."
+        },
+        {
+          "title": "Change Type",
+          "name": "changeType",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "select",
+          "options": [
+            "MANUAL",
+            "AUTOMATED",
+            "COMPROMISE",
+            "OTHER"
+          ],
+          "tooltip": "Specify type of Incidents created by the rule.",
+          "description": "Specify type of Incidents created by the rule."
+        },
+        {
+          "title": "Comment",
+          "name": "comment",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "text",
+          "tooltip": " Comments for Incidents created by rule.",
+          "description": " Comments for Incidents created by rule."
+        },
+        {
+          "title": "Disposition Category",
+          "name": "dispositionCategory",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "select",
+          "options": [
+            "PATCHING",
+            "PRE_APPROVED_CHANGE_CONTROL",
+            "CONFIGURATION_CHANGE",
+            "HUMAN_ERROR",
+            "DATA_CORRUPTION",
+            "EMERGENCY_CHANGE",
+            "CHANGE_CONTROL_VIOLATION",
+            "GENERAL_HACKING",
+            "MALWARE"
+          ],
+          "tooltip": "The category of the Incident created by the rule.",
+          "description": "The category of the Incident created by the rule."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_incidents",
+      "title": "Get Incidents",
+      "description": "Get FIM incidents for an user account.",
+      "category": "investigation",
+      "annotation": "get_incidents",
+      "output_schema": [
+        {
+          "sortValues": [
+          ],
+          "data": {
+            "name": " ",
+            "id": "",
+            "reviewers": [
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "title": "Filter",
+          "name": "filter",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Filter the incidents list by providing a query using Qualys syntax. For example - status:`OPEN`.",
+          "description": "Filter the incidents list by providing a query using Qualys syntax. For example - status:`OPEN`."
+        },
+        {
+          "title": "Sort",
+          "name": "sort",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "placeholder": "[{\"action\":\"asc\"}]",
+          "tooltip": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}].",
+          "description": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}]."
+        },
+        {
+          "title": "Attributes",
+          "name": "attributes",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Search based on certain attributes (provide comma separated list).",
+          "description": "Search based on certain attributes (provide comma separated list)."
+        },
+        {
+          "title": "Search After",
+          "name": "searchAfter",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "This parameter is required to fetch more than 10,000 rows",
+          "description": "This parameter is required to fetch more than 10,000 rows"
+        },
+        {
+          "title": "Page Number",
+          "name": "pageNumber",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The page to be returned. Starts from zero.",
+          "description": "The page to be returned. Starts from zero."
+        },
+        {
+          "title": "Page Size",
+          "name": "pageSize",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The number of records per page to be included in the response. Default is 10.",
+          "description": "The number of records per page to be included in the response. Default is 10."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "fetch_incident_events",
+      "title": "Fetch Incident Events",
+      "description": "Get events logged under an incident.",
+      "category": "investigation",
+      "annotation": "fetch_incident_events",
+      "output_schema": [
+        {
+          "sortValues": [
+          ],
+          "data": {
+            "name": "",
+            "id": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "title": "Incident ID",
+          "name": "incidentId",
+          "visible": true,
+          "required": true,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Specify the ID of the incident you want to fetch the events for.",
+          "description": "Specify the ID of the incident you want to fetch the events for."
+        },
+        {
+          "title": "Filter",
+          "name": "filter",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Filter the events list by providing a query using Qualys syntax. For example - status:`OPEN`.",
+          "description": "Filter the events list by providing a query using Qualys syntax. For example - status:`OPEN`."
+        },
+        {
+          "title": "Sort",
+          "name": "sort",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "placeholder": "[{\"action\":\"asc\"}]",
+          "tooltip": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}].",
+          "description": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}]."
+        },
+        {
+          "title": "Attributes",
+          "name": "attributes",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Search based on certain attributes (provide comma separated list).",
+          "description": "Search based on certain attributes (provide comma separated list)."
+        },
+        {
+          "title": "Page Number",
+          "name": "pageNumber",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The page to be returned. Starts from zero.",
+          "description": "The page to be returned. Starts from zero."
+        },
+        {
+          "title": "Page Size",
+          "name": "pageSize",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The number of records per page to be included in the response. Default is 10.",
+          "description": "The number of records per page to be included in the response. Default is 10."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_assets",
+      "title": "Get Assets",
+      "description": "To search Assets based on a criteria.",
+      "category": "investigation",
+      "annotation": "get_assets",
+      "output_schema": [
+        {
+          "sortValues": [],
+          "data": {
+            "interfaces": [
+              {
+                "hostname": "",
+                "macAddress": "",
+                "address": "",
+                "interfaceName": ""
+              }
+            ],
+            "lastCheckedIn": "",
+            "manifest": {
+              "id": "",
+              "updatedDate": "",
+              "status": ""
+            },
+            "created": "",
+            "profiles": [
+              {
+                "createdBy": {
+                  "date": "",
+                  "user": {
+                    "name": "",
+                    "id": ""
+                  }
+                },
+                "name": "",
+                "customerId": "",
+                "id": "",
+                "type": "",
+                "category": {
+                  "name": "",
+                  "id": ""
+                },
+                "version": "",
+                "status": ""
+              },
+              {
+                "osVersions": [],
+                "createdBy": {
+                  "date": "",
+                  "user": {
+                    "name": "",
+                    "id": ""
+                  }
+                },
+                "name": "",
+                "customerId": "",
+                "id": "",
+                "type": "",
+                "category": {
+                  "name": "",
+                  "id": ""
+                },
+                "version": "",
+                "status": ""
+              },
+              {
+                "osVersions": [],
+                "createdBy": {
+                  "date": "",
+                  "user": {
+                    "name": "",
+                    "id": ""
+                  }
+                },
+                "name": "",
+                "customerId": "",
+                "id": "",
+                "type": "",
+                "category": {
+                  "name": "",
+                  "id": ""
+                },
+                "version": "",
+                "status": ""
+              },
+              {
+                "osVersions": [],
+                "createdBy": {
+                  "date": "",
+                  "user": {
+                    "name": "",
+                    "id": ""
+                  }
+                },
+                "name": "",
+                "customerId": "",
+                "id": "",
+                "type": "",
+                "category": {
+                  "name": "",
+                  "id": ""
+                },
+                "version": "",
+                "status": ""
+              }
+            ],
+            "agentService": "",
+            "hostId": "",
+            "operatingSystem": "",
+            "lastLoggedonUser": "",
+            "tags": [
+            ],
+            "customerUuid": "",
+            "system": {
+              "lastBoot": ""
+            },
+            "ec2": "",
+            "assetId": "",
+            "netbiosName": "",
+            "customerId": "",
+            "name": "",
+            "agentVersion": "",
+            "id": "",
+            "agentUuid": "",
+            "activationDate": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "title": "Attributes",
+          "name": "attributes",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The list of comma-separated attributes that you want to include in the response. By default, all attributes will be returned in the result.",
+          "description": "The list of comma-separated attributes that you want to include in the response. By default, all attributes will be returned in the result."
+        },
+        {
+          "title": "Filter",
+          "name": "filter",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Filter the Assets by providing a query using Qualys syntax. For example - operatingSystem:'Microsoft Windows 10'",
+          "description": "Filter the Assets by providing a query using Qualys syntax. For example - operatingSystem:'Microsoft Windows 10'"
+        },
+        {
+          "title": "Include Tag Data",
+          "name": "includeTagData",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "checkbox",
+          "value": false,
+          "tooltip": "Set the flag to \"true\" if you want the tags related information in the response. Else, set it to false.",
+          "description": "Set the flag to \"true\" if you want the tags related information in the response. Else, set it to false."
+        },
+        {
+          "title": "Search After",
+          "name": "searchAfter",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "This parameter is required to fetch more than 10,000 rows",
+          "description": "This parameter is required to fetch more than 10,000 rows"
+        },
+        {
+          "title": "Not Sent Events For Hours",
+          "name": "notSentEventsForHours",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "integer",
+          "tooltip": "List those assets that have not sent any events in last \"<enter value>\" hours. This integer input e..g 10.",
+          "description": "List those assets that have not sent any events in last \"<enter value>\" hours. This integer input e..g 10."
+        },
+        {
+          "title": "Sort",
+          "name": "sort",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "Sort the results using Asset rule attributes.",
+          "description": "Sort the results using Asset rule attributes."
+        },
+        {
+          "title": "Page Number",
+          "name": "pageNumber",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The page to be returned. Starts from zero.",
+          "description": "The page to be returned. Starts from zero."
+        },
+        {
+          "title": "Page Size",
+          "name": "pageSize",
+          "visible": true,
+          "required": false,
+          "editable": true,
+          "type": "text",
+          "tooltip": "The number of records per page to be included in the response. Default is 10.",
+          "description": "The number of records per page to be included in the response. Default is 10."
+        }
+      ],
+      "enabled": true
+    }
+  ]
+}
