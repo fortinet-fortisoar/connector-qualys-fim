@@ -1,0 +1,720 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - Qualys File Integrity Monitoring(FIM) - 1.0.0",
+      "description": "Sample playbooks for \"Qualys File Integrity Monitoring(FIM)\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": "/api/3/images/784df5ba-98cb-46a6-88a1-4e0239583c43",
+      "uuid": "3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+      "id": 154,
+      "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "createDate": 1639485851,
+      "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "modifyDate": 1639485851,
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Assets",
+          "aliasName": null,
+          "tag": "#Qualys File Integrity Monitoring(FIM)",
+          "description": "To search Assets based on a criteria.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639485946,
+          "collection": "/api/3/workflow_collections/3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/05b356b9-6dec-43e0-9f74-ef14bc8890ef",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "ae7df445-1365-4bf1-9c32-bf39bcd6884e",
+                "title": "Qualys File Integrity Monitoring(FIM): Get Assets",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "05b356b9-6dec-43e0-9f74-ef14bc8890ef",
+              "id": 7384
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Assets",
+              "description": null,
+              "arguments": {
+                "name": "Qualys File Integrity Monitoring(FIM)",
+                "config": "''",
+                "params": {
+                  "sort": "",
+                  "filter": "",
+                  "pageSize": "",
+                  "attributes": "",
+                  "pageNumber": "",
+                  "searchAfter": "",
+                  "includeTagData": "",
+                  "notSentEventsForHours": ""
+                },
+                "version": "1.0.0",
+                "connector": "qualys-fim",
+                "operation": "get_assets",
+                "operationTitle": "Get Assets",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "05c9b4b9-2b81-4dbf-acc8-88b92e0fa883",
+              "id": 7385
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Assets",
+              "targetStep": "/api/3/workflow_steps/05c9b4b9-2b81-4dbf-acc8-88b92e0fa883",
+              "sourceStep": "/api/3/workflow_steps/05b356b9-6dec-43e0-9f74-ef14bc8890ef",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "26f47561-0bcc-4194-ac71-041ce77ebcc8"
+            }
+          ],
+          "priority": null,
+          "uuid": "04e8be0b-8f05-4cb0-bbc2-5bd8bfb77716",
+          "recordTags": [
+            "Qualys",
+            "FIM"
+          ],
+          "id": 1546,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1639485851,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639485944,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Events",
+          "aliasName": null,
+          "tag": "#Qualys File Integrity Monitoring(FIM)",
+          "description": "Fetch a list of all FIM events from the user account.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639485978,
+          "collection": "/api/3/workflow_collections/3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/984f4acd-cd24-4cef-aaae-3c8e527dd1b4",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "00174a82-7b7d-494d-b304-d086c67580c3",
+                "title": "Qualys File Integrity Monitoring(FIM): Get Events",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "984f4acd-cd24-4cef-aaae-3c8e527dd1b4",
+              "id": 7372
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Events",
+              "description": null,
+              "arguments": {
+                "name": "Qualys File Integrity Monitoring(FIM)",
+                "config": "''",
+                "params": {
+                  "sort": "",
+                  "filter": "",
+                  "pageSize": "",
+                  "pageNumber": "",
+                  "incidentIds": "",
+                  "incidentContext": ""
+                },
+                "version": "1.0.0",
+                "connector": "qualys-fim",
+                "operation": "get_events",
+                "operationTitle": "Get Events",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "cdca3442-c6fe-4c7c-b845-905cbbffa35b",
+              "id": 7373
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Events",
+              "targetStep": "/api/3/workflow_steps/cdca3442-c6fe-4c7c-b845-905cbbffa35b",
+              "sourceStep": "/api/3/workflow_steps/984f4acd-cd24-4cef-aaae-3c8e527dd1b4",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "e265c919-e4d9-4ef2-b2db-a422971fd4fc"
+            }
+          ],
+          "priority": null,
+          "uuid": "3c56f940-d01b-4322-9183-f1d6fcd1c2b2",
+          "recordTags": [
+            "Qualys",
+            "FIM"
+          ],
+          "id": 1540,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1639485851,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639485976,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Create Manual Incident ",
+          "aliasName": null,
+          "tag": "#Qualys File Integrity Monitoring(FIM)",
+          "description": "Create manual incidents of type \"DEFAULT\".",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639485911,
+          "collection": "/api/3/workflow_collections/3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/2b37611f-9346-41bc-80b3-6d1012016843",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "be446c25-7b67-41be-a4f5-45b44c4eb612",
+                "title": "Qualys File Integrity Monitoring(FIM): Create Manual Incident ",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "2b37611f-9346-41bc-80b3-6d1012016843",
+              "id": 7376
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create Manual Incident ",
+              "description": null,
+              "arguments": {
+                "name": "Qualys File Integrity Monitoring(FIM)",
+                "config": "''",
+                "params": {
+                  "name": "",
+                  "filter": "",
+                  "comment": "",
+                  "userInfo": "",
+                  "reviewers": ""
+                },
+                "version": "1.0.0",
+                "connector": "qualys-fim",
+                "operation": "create_manual_incident ",
+                "operationTitle": "Create Manual Incident ",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "c0d8af4a-e328-48a6-81cc-e7dba3d30671",
+              "id": 7377
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Create Manual Incident ",
+              "targetStep": "/api/3/workflow_steps/c0d8af4a-e328-48a6-81cc-e7dba3d30671",
+              "sourceStep": "/api/3/workflow_steps/2b37611f-9346-41bc-80b3-6d1012016843",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "7d910147-e2c6-4bcb-96c2-6dc956fb6ef8"
+            }
+          ],
+          "priority": null,
+          "uuid": "65eede2c-7f7a-4033-a85b-bb7b19fa5aed",
+          "recordTags": [
+            "Qualys",
+            "FIM"
+          ],
+          "id": 1542,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1639485851,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639485910,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Fetch Incident Events",
+          "aliasName": null,
+          "tag": "#Qualys File Integrity Monitoring(FIM)",
+          "description": "Get events logged under an incident.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639485928,
+          "collection": "/api/3/workflow_collections/3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/1afb4a22-fff7-4a29-aff3-e69bf1cfe31b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "cb3ff079-b540-4a7c-bd86-e6b1cb2f6024",
+                "title": "Qualys File Integrity Monitoring(FIM): Fetch Incident Events",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "1afb4a22-fff7-4a29-aff3-e69bf1cfe31b",
+              "id": 7382
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Fetch Incident Events",
+              "description": null,
+              "arguments": {
+                "name": "Qualys File Integrity Monitoring(FIM)",
+                "config": "''",
+                "params": {
+                  "sort": "",
+                  "filter": "",
+                  "pageSize": "",
+                  "attributes": "",
+                  "incidentId": "",
+                  "pageNumber": ""
+                },
+                "version": "1.0.0",
+                "connector": "qualys-fim",
+                "operation": "fetch_incident_events",
+                "operationTitle": "Fetch Incident Events",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "f3f9ca2b-5cb5-47eb-899d-254aabdfe056",
+              "id": 7383
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Fetch Incident Events",
+              "targetStep": "/api/3/workflow_steps/f3f9ca2b-5cb5-47eb-899d-254aabdfe056",
+              "sourceStep": "/api/3/workflow_steps/1afb4a22-fff7-4a29-aff3-e69bf1cfe31b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "f3b7d04f-405c-4510-bf07-77871163a4d9"
+            }
+          ],
+          "priority": null,
+          "uuid": "6c469109-738b-4475-bb5d-93175b57ff85",
+          "recordTags": [
+            "Qualys",
+            "FIM"
+          ],
+          "id": 1545,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1639485851,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639485926,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Event Details",
+          "aliasName": null,
+          "tag": "#Qualys File Integrity Monitoring(FIM)",
+          "description": "Fetch details for an event.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639485962,
+          "collection": "/api/3/workflow_collections/3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/5ca774d0-370a-4bd3-a258-ea053e178f0c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "1a322f58-6004-4c21-8d65-689462dd4273",
+                "title": "Qualys File Integrity Monitoring(FIM): Get Event Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "5ca774d0-370a-4bd3-a258-ea053e178f0c",
+              "id": 7374
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Event Details",
+              "description": null,
+              "arguments": {
+                "name": "Qualys File Integrity Monitoring(FIM)",
+                "config": "''",
+                "params": {
+                  "eventId": ""
+                },
+                "version": "1.0.0",
+                "connector": "qualys-fim",
+                "operation": "get_event_details",
+                "operationTitle": "Get Event Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "beb23f6a-6cec-44b8-b4ee-983710e0b3b9",
+              "id": 7375
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Event Details",
+              "targetStep": "/api/3/workflow_steps/beb23f6a-6cec-44b8-b4ee-983710e0b3b9",
+              "sourceStep": "/api/3/workflow_steps/5ca774d0-370a-4bd3-a258-ea053e178f0c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5692365a-c4bd-4328-9665-3fb498a29c61"
+            }
+          ],
+          "priority": null,
+          "uuid": "748aeb5f-6036-4228-b262-232d62f879ae",
+          "recordTags": [
+            "Qualys",
+            "FIM"
+          ],
+          "id": 1541,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1639485851,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639485960,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Incidents",
+          "aliasName": null,
+          "tag": "#Qualys File Integrity Monitoring(FIM)",
+          "description": "Get FIM incidents for an user account.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639485994,
+          "collection": "/api/3/workflow_collections/3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/8059334a-d3e9-4b69-a815-5effe7bc32bf",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "ba552cea-6157-46fd-a589-ed88046418ed",
+                "title": "Qualys File Integrity Monitoring(FIM): Get Incidents",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "8059334a-d3e9-4b69-a815-5effe7bc32bf",
+              "id": 7380
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Incidents",
+              "description": null,
+              "arguments": {
+                "name": "Qualys File Integrity Monitoring(FIM)",
+                "config": "''",
+                "params": {
+                  "sort": "",
+                  "filter": "",
+                  "pageSize": "",
+                  "attributes": "",
+                  "pageNumber": "",
+                  "searchAfter": ""
+                },
+                "version": "1.0.0",
+                "connector": "qualys-fim",
+                "operation": "get_incidents",
+                "operationTitle": "Get Incidents",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "d9c65c51-4b2b-4c3c-90bb-a07fe8f4cca9",
+              "id": 7381
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Incidents",
+              "targetStep": "/api/3/workflow_steps/d9c65c51-4b2b-4c3c-90bb-a07fe8f4cca9",
+              "sourceStep": "/api/3/workflow_steps/8059334a-d3e9-4b69-a815-5effe7bc32bf",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5871ad3b-6b79-4788-8130-eef0d428bbcd"
+            }
+          ],
+          "priority": null,
+          "uuid": "7d9c7a03-ed91-4487-92ab-759ffd52be86",
+          "recordTags": [
+            "Qualys",
+            "FIM"
+          ],
+          "id": 1544,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1639485851,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639485993,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Approve Incident ",
+          "aliasName": null,
+          "tag": "#Qualys File Integrity Monitoring(FIM)",
+          "description": "Approve an Incident.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639485890,
+          "collection": "/api/3/workflow_collections/3dca5bf7-0d9d-4ae2-80ce-8f865c66435d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/5206dc3c-08c2-4b81-8881-4031498ba964",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "f00ee2c3-8506-4285-8138-52c1f8050f9a",
+                "title": "Qualys File Integrity Monitoring(FIM): Approve Incident ",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "5206dc3c-08c2-4b81-8881-4031498ba964",
+              "id": 7378
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Approve Incident ",
+              "description": null,
+              "arguments": {
+                "name": "Qualys File Integrity Monitoring(FIM)",
+                "config": "''",
+                "params": {
+                  "comment": "",
+                  "changeType": "",
+                  "incidentId": "",
+                  "approvalStatus": "",
+                  "dispositionCategory": ""
+                },
+                "version": "1.0.0",
+                "connector": "qualys-fim",
+                "operation": "approve_incident ",
+                "operationTitle": "Approve Incident ",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "603e830b-91d9-4e15-b7aa-36a400bded4c",
+              "id": 7379
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Approve Incident ",
+              "targetStep": "/api/3/workflow_steps/603e830b-91d9-4e15-b7aa-36a400bded4c",
+              "sourceStep": "/api/3/workflow_steps/5206dc3c-08c2-4b81-8881-4031498ba964",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "daa3e408-e129-484e-98c0-38278987ed98"
+            }
+          ],
+          "priority": null,
+          "uuid": "bc16085b-cd92-4317-afb5-b39dcd2be468",
+          "recordTags": [
+            "Qualys",
+            "FIM"
+          ],
+          "id": 1543,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1639485851,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639485889,
+          "owners": [],
+          "isPrivate": false
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "Qualys",
+    "FIM"
+  ]
+}
