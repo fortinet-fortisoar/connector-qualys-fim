@@ -3,7 +3,7 @@
   "label": "Qualys File Integrity Monitoring(FIM)",
   "description": "Qualys File Integrity Monitoring (FIM) is a highly scalable cloud app that enables a simple way to monitor critical files, directories, and registry paths for changes in real time, and helps adhere to compliance mandates such as PCI-DSS, FedRAMP, HIPAA, GDPR and others.",
   "publisher": "Community",
-  "cs_approved": true,
+  "cs_approved": false,
   "cs_compatible": true,
   "version": "1.0.0",
   "category": "IT Services",
@@ -161,7 +161,7 @@
           "value": false
         },
         {
-          "title": "Incident Ids",
+          "title": "Incident IDs",
           "name": "incidentIds",
           "visible": true,
           "required": false,
@@ -178,7 +178,8 @@
           "editable": true,
           "type": "text",
           "tooltip": "The page to be returned. Starts from zero.",
-          "description": "The page to be returned. Starts from zero."
+          "description": "The page to be returned. Starts from zero.",
+          "value": 0
         },
         {
           "title": "Page Size",
@@ -188,7 +189,8 @@
           "editable": true,
           "type": "text",
           "tooltip": "The number of records per page to be included in the response. Default is 10.",
-          "description": "The number of records per page to be included in the response. Default is 10."
+          "description": "The number of records per page to be included in the response. Default is 10.",
+          "value": 10
         }
       ],
       "enabled": true
@@ -286,7 +288,7 @@
     },
     {
       "operation": "create_manual_incident ",
-      "title": "Create Manual Incident ",
+      "title": "Create Manual Incident",
       "description": "Create manual incidents of type \"DEFAULT\".",
       "category": "investigation",
       "annotation": "create_manual_incident",
@@ -390,7 +392,7 @@
     },
     {
       "operation": "approve_incident ",
-      "title": "Approve Incident ",
+      "title": "Approve Incident",
       "description": "Approve an Incident.",
       "category": "investigation",
       "annotation": "approve_incident",

@@ -5,9 +5,7 @@ All rights reserved.
 FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE 
 Copyright end 
 """
-
 import requests
-
 from connectors.core.connector import get_logger, ConnectorError
 
 logger = get_logger('qualys-fim')
@@ -52,10 +50,11 @@ def generate_authentication_token(config):
         endpoint = config.get('server_url') + '/auth'
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         data = {'username': config.get('username'), 'password': config.get('password'), 'token': True}
-        token = requests.post(url=endpoint, headers=headers, data=data).text
-        headers = {'Authorization': F'Bearer {token}', 'content-type': 'application/json'}
-        if 'authentication_exceptions' in headers['Authorization']:
-            raise Exception("Authentication Failure: Your account is not recognized and cannot login at this time.")
+        try:
+            token = requests.post(url=endpoint, headers=headers, data=data, verify=config.get('verify_ssl')).text
+        except Exception as e:
+            raise ConnectorError('{}'.format(e))
+        headers = {'Authorization': 'Bearer {}'.format(token), 'content-type': 'application/json'}
         return headers
     except Exception as e:
         logger.exception('{}'.format(e))
