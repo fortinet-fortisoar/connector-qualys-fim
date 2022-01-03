@@ -19,7 +19,8 @@
         "visible": true,
         "type": "text",
         "name": "server_url",
-        "value": "https://gateway.qg2.apps.qualys.com"
+        "value": "https://gateway.qg2.apps.qualys.com",
+        "description": "The URL of the Qualys File Integrity Monitoring(FIM) server to which you will connect and perform the automated operations."
       },
       {
         "title": "User Name",
@@ -27,7 +28,8 @@
         "editable": true,
         "visible": true,
         "type": "text",
-        "name": "username"
+        "name": "username",
+        "description": "The username used to access the Qualys File Integrity Monitoring(FIM) server to which you will connect and perform the automated operations."
       },
       {
         "title": "Password",
@@ -35,7 +37,8 @@
         "editable": true,
         "visible": true,
         "type": "password",
-        "name": "password"
+        "name": "password",
+        "description": "The password used to access the Qualys File Integrity Monitoring(FIM) server to which you will connect and perform the automated operations."
       },
       {
         "title": "Verify SSL",
@@ -44,7 +47,8 @@
         "visible": true,
         "type": "checkbox",
         "name": "verify_ssl",
-        "value": true
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
       }
     ]
   },
