@@ -1,7 +1,7 @@
 {
   "name": "qualys-fim",
   "label": "Qualys File Integrity Monitoring(FIM)",
-  "description": "Qualys File Integrity Monitoring (FIM) is a highly scalable cloud app that enables a simple way to monitor critical files, directories, and registry paths for changes in real time, and helps adhere to compliance mandates such as PCI-DSS, FedRAMP, HIPAA, GDPR and others.",
+  "description": "Qualys File Integrity Monitoring (FIM) is a highly scalable cloud app that enables a simple way to monitor critical files, directories, and registry paths for changes in real time, and helps adhere to compliance mandates such as PCI-DSS, FedRAMP, HIPAA, GDPR and others. This connector facilitates automated interactions with a Qualys File Integrity Monitoring (FIM) server using FortiSOAR™ playbooks.",
   "publisher": "Community",
   "cs_approved": false,
   "cs_compatible": true,
@@ -9,7 +9,7 @@
   "category": "IT Services",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/qualys-file-integrity-monitoring-fim/219/qualys-file-integrity-monitoring-fim-v1-0-0",
   "configuration": {
     "fields": [
       {
@@ -56,7 +56,7 @@
     {
       "operation": "get_events",
       "title": "Get Events",
-      "description": "Fetch a list of all FIM events from the user account.",
+      "description": "Retrieves a list of all or specific FIM events from the user account based on the input parameters you have specified.",
       "category": "investigation",
       "annotation": "get_events",
       "output_schema": [
@@ -140,7 +140,7 @@
           "type": "text",
           "placeholder": "profiles.name: Windows Profile - PCI(NJJ)",
           "tooltip": "Filter the events list by providing a query using Qualys syntax. For example - dateTime:['2019-02-25T18:30:00.000Z'..'2019-02-26T18:29:59.999Z'] AND action: 'Create'.",
-          "description": "Filter the events list by providing a query using Qualys syntax. For example - dateTime:['2019-02-25T18:30:00.000Z'..'2019-02-26T18:29:59.999Z'] AND action: 'Create'."
+          "description": "Specify the query, in the Qualys syntax, using which you want to filter the events list retrieved from FIM. For example - dateTime:['2019-02-25T18:30:00.000Z'..'2019-02-26T18:29:59.999Z'] AND action: 'Create'. "
         },
         {
           "title": "Sort",
@@ -151,7 +151,7 @@
           "type": "text",
           "placeholder": "[{\"action\":\"asc\"}]",
           "tooltip": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}].",
-          "description": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}]."
+          "description": "Specify the Qualys token and the direction (asc, desc) in which you want to sort the events list retrieved from FIM. For example, [{\"action\":\"asc\"}]"
         },
         {
           "title": "Incident Context",
@@ -160,8 +160,8 @@
           "required": false,
           "editable": true,
           "type": "checkbox",
-          "tooltip": " Search within incidents. Default is false.",
-          "description": " Search within incidents. Default is false.",
+          "tooltip": "Select this checkbox to search for events within incidents.",
+          "description": "Select this checkbox to search for events within incidents.",
           "value": false
         },
         {
@@ -171,8 +171,8 @@
           "required": false,
           "editable": true,
           "type": "text",
-          "tooltip": "Comma separated list of incident IDs to be included while searching for events in incidents.",
-          "description": "Comma separated list of incident IDs to be included while searching for events in incidents."
+          "tooltip": "Specify a comma-separated list of incident IDs to be included while searching for events in incidents. ",
+          "description": "Specify a comma-separated list of incident IDs to be included while searching for events in incidents. "
         },
         {
           "title": "Page Number",
@@ -181,8 +181,8 @@
           "required": false,
           "editable": true,
           "type": "text",
-          "tooltip": "The page to be returned. Starts from zero.",
-          "description": "The page to be returned. Starts from zero.",
+          "tooltip": "Specify the page number (zero-based) from which you want the operation to return results.",
+          "description": "Specify the page number (zero-based) from which you want the operation to return results.",
           "value": 0
         },
         {
@@ -192,8 +192,8 @@
           "required": false,
           "editable": true,
           "type": "text",
-          "tooltip": "The number of records per page to be included in the response. Default is 10.",
-          "description": "The number of records per page to be included in the response. Default is 10.",
+          "tooltip": "The number of records, per page, to be included in the response. By default, this is set as 10.",
+          "description": "The number of records, per page, to be included in the response. By default, this is set as 10.",
           "value": 10
         }
       ],
@@ -202,7 +202,7 @@
     {
       "operation": "get_event_details",
       "title": "Get Event Details",
-      "description": "Fetch details for an event.",
+      "description": "Retrieves details for a specific event from FIM based on the event ID you have specified.",
       "category": "investigation",
       "annotation": "get_event_details",
       "output_schema": {
@@ -284,8 +284,8 @@
           "required": true,
           "editable": true,
           "type": "text",
-          "tooltip": "Specify the eventid who's information you want to fetch.",
-          "description": "Specify the eventid who's information you want to fetch."
+          "tooltip": "Specify the ID of the event whose details you want to retrieve from FIM. ",
+          "description": "Specify the ID of the event whose details you want to retrieve from FIM."
         }
       ],
       "enabled": true
@@ -293,7 +293,7 @@
     {
       "operation": "create_manual_incident ",
       "title": "Create Manual Incident",
-      "description": "Create manual incidents of type \"DEFAULT\".",
+      "description": "Creates a manual incident of type \"DEFAULT\" in FIM based on the filter, incident name, and other input parameters you have specified.",
       "category": "investigation",
       "annotation": "create_manual_incident",
       "output_schema": {
@@ -324,7 +324,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "Filter the events list by providing a query using Qualys syntax. For example - \"filters\": [ \"dateTime: ['2020-05-17T18:30:00.000Z'..'2020-05-18T18:29:59.999Z'] and(action:`Attributes`)\"].",
-          "description": "Filter the events list by providing a query using Qualys syntax. For example - \"filters\": [ \"dateTime: ['2020-05-17T18:30:00.000Z'..'2020-05-18T18:29:59.999Z'] and(action:`Attributes`)\"]."
+          "description": "Specify the query, in the Qualys syntax, using which you want to create a manual incident in FIM. For example \"filters\": [ \"dateTime: ['2020-05-17T18:30:00.000Z'..'2020-05-18T18:29:59.999Z'] and(action:`Attributes`)\"]."
         },
         {
           "title": "Incident Name",
@@ -334,7 +334,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The name of the incident. Accepted length: Between 1 to 128 characters.",
-          "description": "The name of the incident. Accepted length: Between 1 to 128 characters."
+          "description": "Specify the name of the incident that you want to create in FIM. The length supported for the name is between 1 to 128 characters."
         },
         {
           "title": "Comment",
@@ -344,7 +344,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "Specify the comments for approval of the Incidents.",
-          "description": "Specify the comments for approval of the Incidents."
+          "description": "(Optional) Specify the comments required for approval of the incident that you want to create in FIM."
         },
         {
           "title": "Reviewers Name",
@@ -354,7 +354,7 @@
           "editable": true,
           "type": "text",
           "tooltip": " Reviewers who will approve the incident.",
-          "description": "Reviewers who will approve the incident."
+          "description": "(Optional) Specify the names of the reviewers who can approve the incident that you want to create in FIM."
         },
         {
           "title": "User Information",
@@ -364,7 +364,7 @@
           "editable": true,
           "type": "checkbox",
           "tooltip": "Information about the user",
-          "description": "Information about the user",
+          "description": "Select this checkbox to provide additional information about the user creating the incident in FIM.",
           "value": false,
           "onchange": {
             "true": [
@@ -375,8 +375,8 @@
                 "required": true,
                 "editable": true,
                 "type": "text",
-                "tooltip": "Specify the user name.",
-                "description": "Specify the user name."
+                "tooltip": "Specify the name of the user creating the incident in FIM. ",
+                "description": "Specify the name of the user creating the incident in FIM. "
               },
               {
                 "title": "User ID",
@@ -385,8 +385,8 @@
                 "required": true,
                 "editable": true,
                 "type": "text",
-                "tooltip": "Specify the user ID.",
-                "description": "Specify the user ID."
+                "tooltip": "Specify the ID of the user creating the incident in FIM.",
+                "description": "Specify the ID of the user creating the incident in FIM."
               }
             ]
           }
@@ -397,7 +397,7 @@
     {
       "operation": "approve_incident ",
       "title": "Approve Incident",
-      "description": "Approve an Incident.",
+      "description": "Approves a specific incident in FIM based on the incident ID, approval status, and other input parameters you have specified. ",
       "category": "investigation",
       "annotation": "approve_incident",
       "output_schema": {
@@ -458,7 +458,7 @@
             "NA"
           ],
           "tooltip": "Specify the approval status of the incident created by the rule.",
-          "description": "Specify the approval status of the incident created by the rule."
+          "description": "Select the type of incident created by the rule that you want to approve in FIM. You can choose from the following options: MANUAL, AUTOMATED, COMPROMISE, or, OTHER."
         },
         {
           "title": "Change Type",
@@ -474,7 +474,7 @@
             "OTHER"
           ],
           "tooltip": "Specify type of Incidents created by the rule.",
-          "description": "Specify type of Incidents created by the rule."
+          "description": "Select the type of incident created by the rule that you want to approve in FIM. You can choose from the following options: MANUAL, AUTOMATED, COMPROMISE, or, OTHER."
         },
         {
           "title": "Comment",
@@ -484,7 +484,7 @@
           "editable": true,
           "type": "text",
           "tooltip": " Comments for Incidents created by rule.",
-          "description": " Comments for Incidents created by rule."
+          "description": "Comments for want to set for the incidents created by the rule that you want to approve in FIM."
         },
         {
           "title": "Disposition Category",
@@ -505,7 +505,7 @@
             "MALWARE"
           ],
           "tooltip": "The category of the Incident created by the rule.",
-          "description": "The category of the Incident created by the rule."
+          "description": "Select the disposition category of the incident created by the rule that you want to approve in FIM. You can choose from the following options: PATCHING, PRE_APPROVED_CHANGE_CONTROL, CONFIGURATION_CHANGE, HUMAN_ERROR, DATA_CORRUPTION, EMERGENCY_CHANGE, CHANGE_CONTROL_VIOLATION, GENERAL_HACKING, or, MALWARE."
         }
       ],
       "enabled": true
@@ -513,7 +513,7 @@
     {
       "operation": "get_incidents",
       "title": "Get Incidents",
-      "description": "Get FIM incidents for an user account.",
+      "description": "Retrieves FIM incidents for a user account based on the input parameters you have specified.",
       "category": "investigation",
       "annotation": "get_incidents",
       "output_schema": [
@@ -537,7 +537,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "Filter the incidents list by providing a query using Qualys syntax. For example - status:`OPEN`.",
-          "description": "Filter the incidents list by providing a query using Qualys syntax. For example - status:`OPEN`."
+          "description": "Specify the query, in the Qualys syntax, using which you want to filter events retrieved from FIM. For example, status:`OPEN`."
         },
         {
           "title": "Sort",
@@ -548,7 +548,7 @@
           "type": "text",
           "placeholder": "[{\"action\":\"asc\"}]",
           "tooltip": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}].",
-          "description": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}]."
+          "description": "Specify the Qualys token and the direction (asc, desc) in which you want to sort the incidents list retrieved from FIM. For example, [{\"action\":\"asc\"}]. "
         },
         {
           "title": "Attributes",
@@ -558,7 +558,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "Search based on certain attributes (provide comma separated list).",
-          "description": "Search based on certain attributes (provide comma separated list)."
+          "description": "Specify a comma-separated list of attributes based on which you want to search for incidents in FIM."
         },
         {
           "title": "Search After",
@@ -568,7 +568,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "This parameter is required to fetch more than 10,000 rows",
-          "description": "This parameter is required to fetch more than 10,000 rows"
+          "description": "Use this parameter if you want to fetch more than 10,000 rows from FIM."
         },
         {
           "title": "Page Number",
@@ -578,7 +578,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The page to be returned. Starts from zero.",
-          "description": "The page to be returned. Starts from zero."
+          "description": "Specify the page number (zero-based) from which you want the operation to return results."
         },
         {
           "title": "Page Size",
@@ -588,7 +588,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The number of records per page to be included in the response. Default is 10.",
-          "description": "The number of records per page to be included in the response. Default is 10."
+          "description": "The number of records, per page, to be included in the response. By default, this is set as 10."
         }
       ],
       "enabled": true
@@ -596,7 +596,7 @@
     {
       "operation": "fetch_incident_events",
       "title": "Fetch Incident Events",
-      "description": "Get events logged under an incident.",
+      "description": "Retrieves events logged under a specific incident in FIM based on the incident ID and other input parameters you have specified.",
       "category": "investigation",
       "annotation": "fetch_incident_events",
       "output_schema": [
@@ -617,8 +617,8 @@
           "required": true,
           "editable": true,
           "type": "text",
-          "tooltip": "Specify the ID of the incident you want to fetch the events for.",
-          "description": "Specify the ID of the incident you want to fetch the events for."
+          "tooltip": "Specify the ID of the incident whose associated events you want to retrieve from FIM.",
+          "description": "Specify the ID of the incident whose associated events you want to retrieve from FIM."
         },
         {
           "title": "Filter",
@@ -628,7 +628,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "Filter the events list by providing a query using Qualys syntax. For example - status:`OPEN`.",
-          "description": "Filter the events list by providing a query using Qualys syntax. For example - status:`OPEN`."
+          "description": "(Optional) Specify the query, in the Qualys syntax, using which you want to filter events retrieved from FIM. For example, status:`OPEN`. "
         },
         {
           "title": "Sort",
@@ -639,7 +639,7 @@
           "type": "text",
           "placeholder": "[{\"action\":\"asc\"}]",
           "tooltip": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}].",
-          "description": "Sort the results using a Qualys token. For example -[{\"action\":\"asc\"}]."
+          "description": "(Optional) Specify the Qualys token and the direction (asc, desc) in which you want to sort the events retrieved from FIM. For example, [{\"action\":\"asc\"}]"
         },
         {
           "title": "Attributes",
@@ -649,7 +649,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "Search based on certain attributes (provide comma separated list).",
-          "description": "Search based on certain attributes (provide comma separated list)."
+          "description": "(Optional) Specify a comma-separated list of attributes based on which you want to search for events in FIM. "
         },
         {
           "title": "Page Number",
@@ -659,7 +659,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The page to be returned. Starts from zero.",
-          "description": "The page to be returned. Starts from zero."
+          "description": "(Optional) Specify the page number (zero-based) from which you want the operation to return results."
         },
         {
           "title": "Page Size",
@@ -669,7 +669,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The number of records per page to be included in the response. Default is 10.",
-          "description": "The number of records per page to be included in the response. Default is 10."
+          "description": "(Optional) The number of records, per page, to be included in the response. By default, this is set as 10."
         }
       ],
       "enabled": true
@@ -677,7 +677,7 @@
     {
       "operation": "get_assets",
       "title": "Get Assets",
-      "description": "To search Assets based on a criteria.",
+      "description": "Searches for assets in FIM based on the input parameters you have specified.",
       "category": "investigation",
       "annotation": "get_assets",
       "output_schema": [
@@ -811,7 +811,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The list of comma-separated attributes that you want to include in the response. By default, all attributes will be returned in the result.",
-          "description": "The list of comma-separated attributes that you want to include in the response. By default, all attributes will be returned in the result."
+          "description": "Specify a comma-separated list of attributes that you want to include in the response of this operation. By default, all attributes will be returned in the result."
         },
         {
           "title": "Filter",
@@ -821,7 +821,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "Filter the Assets by providing a query using Qualys syntax. For example - operatingSystem:'Microsoft Windows 10'",
-          "description": "Filter the Assets by providing a query using Qualys syntax. For example - operatingSystem:'Microsoft Windows 10'"
+          "description": "Specify the query, in the Qualys syntax, using which you want to filter assets retrieved from FIM. For example, operatingSystem:'Microsoft Windows 10'"
         },
         {
           "title": "Include Tag Data",
@@ -832,7 +832,7 @@
           "type": "checkbox",
           "value": false,
           "tooltip": "Set the flag to \"true\" if you want the tags related information in the response. Else, set it to false.",
-          "description": "Set the flag to \"true\" if you want the tags related information in the response. Else, set it to false."
+          "description": "Select this checkbox to include tags=related information in the response of this operation."
         },
         {
           "title": "Search After",
@@ -841,8 +841,8 @@
           "required": false,
           "editable": true,
           "type": "text",
-          "tooltip": "This parameter is required to fetch more than 10,000 rows",
-          "description": "This parameter is required to fetch more than 10,000 rows"
+          "tooltip": "Use this parameter if you want to fetch more than 10,000 rows from FIM.",
+          "description": "Use this parameter if you want to fetch more than 10,000 rows from FIM."
         },
         {
           "title": "Not Sent Events For Hours",
@@ -851,8 +851,8 @@
           "required": false,
           "editable": true,
           "type": "integer",
-          "tooltip": "List those assets that have not sent any events in last \"<enter value>\" hours. This integer input e..g 10.",
-          "description": "List those assets that have not sent any events in last \"<enter value>\" hours. This integer input e..g 10."
+          "tooltip": "Specify the number of hours since when the assets have not sent any events. For example, if you specify 10, then the response of this operation will include the assets that have not sent any events in last \"10\" hours.",
+          "description": "Specify the number of hours since when the assets have not sent any events. For example, if you specify 10, then the response of this operation will include the assets that have not sent any events in last \"10\" hours."
         },
         {
           "title": "Sort",
@@ -861,8 +861,8 @@
           "required": false,
           "editable": true,
           "type": "text",
-          "tooltip": "Sort the results using Asset rule attributes.",
-          "description": "Sort the results using Asset rule attributes."
+          "tooltip": "Specify the Asset rule attributes using which you want to sort the assets retrieved from FIM.",
+          "description": "Specify the Asset rule attributes using which you want to sort the assets retrieved from FIM."
         },
         {
           "title": "Page Number",
@@ -872,7 +872,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The page to be returned. Starts from zero.",
-          "description": "The page to be returned. Starts from zero."
+          "description": "Specify the page number (zero-based) from which you want the operation to return results."
         },
         {
           "title": "Page Size",
@@ -882,7 +882,7 @@
           "editable": true,
           "type": "text",
           "tooltip": "The number of records per page to be included in the response. Default is 10.",
-          "description": "The number of records per page to be included in the response. Default is 10."
+          "description": "The number of records, per page, to be included in the response. By default, this is set as 10."
         }
       ],
       "enabled": true
